@@ -1,89 +1,115 @@
---> Azure OpenAI RAG Chatbot
+# Azure RAG Chatbot
 
-It is an enterprise style Retrieval-Augmented Generation (RAG) system built using Azure OpenAI, Langchain and Chroma Vector Database to
-answer questions from PDF documents.
-This project demonstrates how to build a document question-answering system using modern LLM architecture used in real-world AI applications.
+An AI-powered chatbot built using **Retrieval-Augmented Generation (RAG)** that enables users to interact with custom data through natural language queries. This project combines **vector search** with **Azure OpenAI models** to deliver accurate, context-aware responses.
 
---> Project Overview
+## Features
 
-The system allows users to:
-• Convert the document into embeddings using Azure OpenAI
-• Store embeddings in a Chroma vector database
-• Retrieve relevant document chunks
-• Generate accurate answers using Azure GPT models
+•  Chat with your own data
+•  Semantic search using vector embeddings
+•  Context-aware responses powered by LLMs
+•  Document ingestion and processing pipeline
+•  Fast retrieval using ChromaDB
+•  Integrated with Azure OpenAI
 
-The chatbot answers questions only using the information present in the document, reducing hallucinations.
+## Architecture
 
---> Architecture
+The project follows a standard **RAG pipeline**:
 
-PDF → Text Chunking → Azure Embeddings → Vector Database (Chroma) → Retriever → Azure GPT → Answer
+1. **Data Ingestion**
+   • Load documents
+   • Split into chunks
+   • Generate embeddings
+2. **Vector Database**
+   • Store embeddings in ChromaDB
+3. **Query Processing**
+   • Convert user query into embedding
+4. **Retrieval**
+   • Perform similarity search
+   • Fetch relevant documents
+5. **Generation**
+   • Pass retrieved context + query to LLM
+   • Generate final response
 
---> Tech Stack
+##  Tech Stack
 
-• Python
-• Azure OpenAI
-• LangChain (LCEL pipeline)
-• Chroma Vector Database
-• PyPDF Loader
-• Dotenv for environment variables
+• **Language:** Python
+• **Libraries:** LangChain, ChromaDB
+• **AI Models:** Azure OpenAI (GPT)
+• **Cloud:** Microsoft Azure
 
---> Project Structure
-azure-openai-rag-chatbot
-│
-├── ingest.py        # Loads PDF, splits text, creates embeddings
-├── chat.py          # Runs the RAG chatbot
-├── data/            # Place PDFs here
-└── db/              # Vector database created after ingestion
 
---> Setup Instructions
+## Project Structure
 
-1. Install Dependencies
+```
+Azure-RAG-Chatbot/
+│── app.py                # Main chatbot application  
+│── ingest.py             # Document ingestion pipeline    
+│── data/                 # Input documents  
+│── chroma_db/            # Vector database storage  
+```
 
-   - langchain
-   - langchain-openai
-   - langchain-chroma
-   - langchain-community
-   - langchain-text-splitters
-   - chromadb
-   - pypdf
-   - python-dotenv
-   - tiktoken
+## Installation
 
-2. Configure Environment Variable
+### Clone the repository
 
-Create a .env file in the root directory.
+### Create virtual environment
 
+python -m venv venv
+venv\Scripts\activate   # Windows
+
+### Install dependencies
+
+• langchain
+• langchain-openai
+• langchain-chroma
+• langchain-community
+• langchain-text-splitters
+• chromadb
+• pypdf
+• python-dotenv
+• tiktoken
+
+## Environment Variables
+
+Create a `.env` file and add:
+
+```
 AZURE_OPENAI_API_KEY=your_api_key
-AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+AZURE_OPENAI_ENDPOINT=your_endpoint
 AZURE_OPENAI_API_VERSION=2024-02-15-preview
 AZURE_OPENAI_CHAT_DEPLOYMENT=your_chat_deployment
 AZURE_OPENAI_EMBEDDING_DEPLOYMENT=your_embedding_deployment
+```
 
-3. Add PDF Documents
+## Usage
 
-   Place your document inside the data folder.
-   Example:
-           data/
-               document.pdf
+### Step 1: Ingest Data
 
-4. Create the Vector Database
+ingest_data.py
 
-Run the ingestion script:
-  ingest_data.py
+### Step 2: Run Chatbot
 
-This will:
-• Load the document
-• Split text into chunks
-• Create embeddings
-• Store vectors in Chroma
+Azure_RAG_Project.py
 
-5. Start the Chatbot
-    Azure_RAG_Project.py
 
---> Example Use Case
-This system can be used for:
+## Example Use Cases
 
-• Company knowledge assistants
-• Research document Q&A
-• Legal document analysis
-• Internal documentation chatbots
+•  Enterprise knowledge assistant
+•  Document-based Q&A system
+•  Customer support chatbot
+•  Internal data search tool
+
+
+## Key Learnings
+
+• Built an end-to-end **RAG pipeline**
+• Worked with **vector databases & embeddings**
+• Integrated **Azure OpenAI with custom data**
+• Improved LLM reliability by reducing hallucinations
+
+
+## Author
+
+**Aditya Sharma**
+🔗 GitHub: https://github.com/Adi-24-13
+
